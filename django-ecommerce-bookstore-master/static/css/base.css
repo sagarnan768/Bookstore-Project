@@ -1,0 +1,95 @@
+/* Reset and general styles */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full screen layout */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Carousel styling */
+.carousel-inner {
+  height: 100vh;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card styling */
+.row {
+  margin: 0;
+}
+
+.card {
+  margin: 10px auto;
+  border: none;
+}
+
+.card img {
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Search Bar */
+.search {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background: rgb(16, 141, 190);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: width 0.5s ease, border-radius 0.5s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.search:hover {
+  width: 300px;
+  border-radius: 30px;
+}
+
+.search i {
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  left: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.search input {
+  display: none;
+  position: absolute;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  top: 10px;
+  left: 50px;
+  width: 230px;
+  border: none;
+}
+
+.search:hover input {
+  display: block;
+}
+
+.search input:focus {
+  outline: none;
+}

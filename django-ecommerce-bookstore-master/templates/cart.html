@@ -1,0 +1,52 @@
+<!-- cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Your Cart</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+            <tr>
+                <td>{{ item.book.title }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>₹{{ item.book.price|floatformat:2 }}</td>
+                <td>₹{{ item.total_price|floatformat:2 }}</td>
+                <td>
+                    <form action="{% url 'remove_from_cart' item.book.id %}" method="get">
+                        <button type="submit" class="btn btn-danger remove-button">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4>Total: ₹{{ total_cost|floatformat:2 }}</h4>
+
+<a href="{% url 'make_payment' %}" class="btn btn-primary">Proceed to Checkout</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const removeButtons = document.querySelectorAll(".remove-button");
+        removeButtons.forEach(function(button) {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("Book removed from cart successfully!");
+                button.closest("form").submit(); // Submit the form after the alert
+            });
+        });
+    });
+</script>
+
+{% endblock %}
+
+<!--  -->

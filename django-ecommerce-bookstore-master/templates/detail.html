@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="card mb-3" style="max-width: 840px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ object.image_url }}" class="card-img">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{ object.title }}</h4>
+                <p class="card-text">Author: {{ object.author }}</p>
+                <p class="card-text">Category: {{ object.category }}</p> <!-- Displaying the category -->
+                <hr>
+                <p class="card-text">{{ object.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p><a href="{{ object.follow_author }}" target="_blank">Follow Author</a></p>
+<p>Price: ₹{{ object.price|floatformat:2 }}</p>
+
+{% if object.book_available %}
+    <!-- Add to Cart Button -->
+    <a href="{% url 'add_to_cart' object.pk %}" class="btn btn-outline-success add-to-cart-button" role="button">Add to Cart</a>
+
+    <!-- Shop More Button -->
+    <a href="{% url 'list' %}" class="btn btn-outline-info" role="button">Shop More</a>
+{% else %}
+    <h4 class="text-danger">Out of Stock!</h4>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addToCartButton = document.querySelector(".add-to-cart-button");
+        if (addToCartButton) {
+            addToCartButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("Book is added to cart!");
+                window.location.href = this.href; // Proceed to the 'add to cart' URL
+            });
+        }
+    });
+</script>
+
+{% endblock content %}
